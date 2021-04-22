@@ -1,0 +1,16 @@
+def create_calendar(start='2000-01-01', end='2022-12-31'):
+    df = pd.DataFrame({"Date": pd.date_range(start, end)})
+    df["Day"] = df.Date.dt.day
+    df["Week"] = df.Date.dt.isocalendar().week
+    df["Week_day"] = df.Date.dt.weekday
+    df["Month"] = df.Date.dt.month
+    df["Month_name"] = df.Date.dt.month_name()
+    df["Month_abbr"] = df.Date.dt.month_name().str[:3]
+    df["Quarter"] = df.Date.dt.quarter
+    df["Year"] = df.Date.dt.year
+    df["Year_half"] = (df.Quarter + 1) // 2
+    return df
+
+dCalendario = create_calendar(df['Data da Venda'].min(), df['Data da Venda'].max())
+
+dCalendario
